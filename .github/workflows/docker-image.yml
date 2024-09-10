@@ -1,4 +1,4 @@
-name: ci
+name: CI
 on:
   push:
     branches:
@@ -35,7 +35,7 @@ jobs:
         with:
           push: true
           tags: |
-            akshaykrjain/helm-kubectl:latest
-            akshaykrjain/helm-kubectl:${{ steps.get_version.outputs.sha_short }}
-            akshaykrjain/helm-kubectl:${{ steps.get_version.outputs.version }}
+            akshaykrjain/lambda-error-monitor:latest
+            akshaykrjain/lambda-error-monitor:${{ steps.get_version.outputs.sha_short }}
+            akshaykrjain/lambda-error-monitor:${{ steps.get_version.outputs.version }}
           platforms: linux/amd64,linux/arm64
