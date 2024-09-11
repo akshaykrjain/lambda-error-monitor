@@ -28,3 +28,7 @@ The following environment variables are used to configure the behavior of the ap
 | `ERROR_WINDOW_MINUTES`  | Time window (in minutes) to count Lambda errors            | 10          |
 | `POLL_INTERVAL_SECONDS` | Time between each CloudWatch poll (in seconds)             | 5           |
 | `AWS_REGION`            | AWS region of the Lambda functions                         | `eu-west-1` |
+| `AWS_ACCESS_KEY_ID`     | Your AWS Access Key Id, (Skip if using IAM Roles)          |             |
+| `AWS_SECRET_ACCESS_KEY` | Your AWS Secret Access Key(Skip if using IAM Roles)        |             |
+
+---
