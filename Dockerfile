@@ -8,10 +8,7 @@ WORKDIR /app
 COPY lambda_error_monitor.py .
 
 # Install the required dependencies
-RUN pip install boto3 flask
+RUN pip install boto3 flask gunicorn
 
-# Expose the port for health check
-EXPOSE 8080
-
-# Run the script when the container launches
-CMD ["python", "lambda_error_monitor.py"]
+# Run the app with Gunicorn when the container launches
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8080", "lambda_error_monitor:app"]

@@ -13,8 +13,8 @@ spec:
         app: lambda-cloudwatch-error-monitor
     spec:
       containers:
-        - name: lamberror-cloudwatch-monmonitor
-          image: akshaykrjain/lambda-error-monitor:latest
+        - name: lambda-cloudwatch-error-monitor
+          image: akshaykrjain/lambda-error-monitor:0.0.2
           ports:
             - containerPort: 8080
           resources:
