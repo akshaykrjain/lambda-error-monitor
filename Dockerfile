@@ -8,7 +8,10 @@ WORKDIR /app
 COPY lambda_error_monitor.py .
 
 # Install the required dependencies
-RUN pip install boto3
+RUN pip install boto3 flask
+
+# Expose the port for health check
+EXPOSE 8080
 
 # Run the script when the container launches
 CMD ["python", "lambda_error_monitor.py"]

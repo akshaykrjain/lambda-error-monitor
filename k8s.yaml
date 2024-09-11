@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lambda-cloudwatch-error-monitor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lambda-cloudwatch-error-monitor
+  template:
+    metadata:
+      labels:
+        app: lambda-cloudwatch-error-monitor
+    spec:
+      containers:
+        - name: lamberror-cloudwatch-monmonitor
+          image: akshaykrjain/lambda-error-monitor:latest
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: 500m
+              memory: 256Mi
+          env:
+            - name: DEFAULT_FUNCTION_NAME
+              value: 'your-lambda-function-name' #Remove this variable if you wish to monitor all functions
+            - name: MAX_ERROR_COUNT
+              value: '20'
+            - name: ERROR_WINDOW_MINUTES
+              value: '10'
+            - name: AWS_REGION
+              value: 'eu-west-1'
+            - name: AWS_ACCESS_KEY_ID
+              value: 'your-aws-access-key-id'
+            - name: AWS_SECRET_ACCESS_KEY
+              value: 'your-aws-secret-access-key'
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds: 10
